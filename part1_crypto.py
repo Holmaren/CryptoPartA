@@ -44,5 +44,23 @@ def modexp(base, exponent, modulo):
 
         Given a base, exponent and modulo. Compute the modular exponentiation.
     """
-    result = 0 
+    result = 1
+
+    #First I'm getting the binary representation of the exponent
+    binRep=bin(exponent)[2:]
+    #Iterating from MSB to LSB
+    for i in xrange(len(binRep)):
+        curBit=int(binRep[i])
+        '''In every step except for MSB we square the result modulo n. But in the first step 			result==1 and the first step is MSB, which is why we don't have to handle this'''
+        result=(result*result)%modulo
+        #if the current bit is one we also multiply with the base
+        if curBit==1:
+            result=(result*base)%modulo
+        
+
     return result
+
+
+
+
+
