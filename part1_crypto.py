@@ -14,7 +14,8 @@ def diffie_hellman_private(numbits):
 
         Returns a private secret integer with `numbits`. 
     """
-    private = 0
+    #Using random.getrandbits(k) which gives me a long int with k random bits. Casting this to an int
+    private = int(random.getrandbits(numbits))
     return private
 
 # TODO
@@ -24,7 +25,8 @@ def diffie_hellman_pair(generator, modulus, private):
 
         Given a generator, prime modulus and a private integer, produce the public integer. Return a tuple of (Private Integer, Public Integer)
     """
-    public = 0
+    #Using my function modexp to calculate the public integer (generator^private)%modulus
+    public = modexp(generator,private,modulus)
     return (private, public)
 
 # TODO 
@@ -34,7 +36,8 @@ def diffie_hellman_shared(private, public, modulus):
 
         Given a private integer, public integer and prime modulus. Compute the shared key for the communication channel, then return it.
     """
-    shared_key = 0
+    #Using my function modexp to calculate the shared key which is (public^private)%modulus
+    shared_key = modexp(public,private,modulus)
     return shared_key
 
 # TODO

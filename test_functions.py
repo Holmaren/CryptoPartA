@@ -25,7 +25,11 @@ if whichFunc=="Epow":
 	#print "Pow ans:" + str((base**exp)%mod)
 
 
-
+if whichFunc=="DH":
+	priv=p1.diffie_hellman_private(10)
+	print "Priv: " + str(priv)
+	print p1.diffie_hellman_pair(5,15,priv)
+	print p1.diffie_hellman_shared(priv,67,15)
 
 
 
