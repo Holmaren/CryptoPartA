@@ -22,7 +22,7 @@ if whichFunc=="Epow":
 	ans=p1.modexp(base,exp,mod)
 
 	print "Func ans:" + str(ans)
-	#print "Pow ans:" + str((base**exp)%mod)
+	print "Pow ans:" + str((base**exp)%mod)
 
 
 if whichFunc=="DH":

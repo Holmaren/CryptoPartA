@@ -49,17 +49,18 @@ def modexp(base, exponent, modulo):
     """
     result = 1
 
-    #First I'm getting the binary representation of the exponent
-    binRep=bin(exponent)[2:]
-    #Iterating from MSB to LSB
-    for i in xrange(len(binRep)):
-        curBit=int(binRep[i])
-        '''In every step except for MSB we square the result modulo n. But in the first step 			result==1 and the first step is MSB, which is why we don't have to handle this'''
-        result=(result*result)%modulo
-        #if the current bit is one we also multiply with the base
-        if curBit==1:
+    '''
+    We will use the LSB of the current exponent variable to determine if we should multiply
+    the temporary result of the base or if we should just square the base.
+    '''
+    while exponent>0:
+        #If the current exponent is odd (LSB=1)
+        if(exponent&1==1):
             result=(result*base)%modulo
-        
+        #Square the base
+        base=(base*base)%modulo
+        #Bitshift the exponent one step to the right
+        exponent>>=1
 
     return result
 
